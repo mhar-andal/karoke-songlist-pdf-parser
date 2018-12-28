@@ -4,8 +4,8 @@
   "description": "",
   "main": "parse.js",
   "scripts": {
-    "start": "node parse-compiled.js",
-    "build": "npx babel parse.js --watch --out-file parse-compiled.js",
+    "start": "node lib/parse-compiled.js",
+    "build": "npx babel src --watch --out-file lib/parse-compiled.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,7 +13,8 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3"
+    "@babel/preset-env": "^7.2.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
   },
   "dependencies": {
     "pdf-parse": "^1.1.1"
