@@ -1,0 +1,31 @@
+import pdf from 'pdf-parse';
+import fs from 'fs';
+
+const dataBuffer = fs.readFileSync('./1.-P-series-Volume-59-FULL-LIST.pdf');
+
+pdf(dataBuffer).then(function (data) {
+  const parsedPdf = data.text.split('\n');
+  const shortArr = parsedPdf.slice(0, 20);
+  shortArr
+    .filter((slot) => {
+      console.log('slot', `"${slot}"`);
+      console.log('length', slot.length);
+      console.log('-------------');
+      return slot.trim() !== '';
+    })
+    .slice(5)
+    .map((slot) => {
+      console.log('slot', slot);
+    });
+  
+});
+
+function writeToFile(parsedPdf) {
+  fs.writeFile("test.txt", parsedPdf, function (err) {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log("The file was saved!");
+  }); 
+}

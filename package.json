@@ -1,0 +1,21 @@
+{
+  "name": "parse-songlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "parse.js",
+  "scripts": {
+    "start": "node parse-compiled.js",
+    "build": "npx babel parse.js --watch --out-file parse-compiled.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3"
+  },
+  "dependencies": {
+    "pdf-parse": "^1.1.1"
+  }
+}
