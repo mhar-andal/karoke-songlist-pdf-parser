@@ -1,25 +1,19 @@
-import pdf from 'pdf-parse';
+import PDFParser from 'pdf2json';
 import fs from 'fs';
+import { parse } from 'path';
 
-const dataBuffer = fs.readFileSync('./1.-P-series-Volume-59-FULL-LIST.pdf');
+let pdfParser = new PDFParser();
 
-pdf(dataBuffer).then(function (data) {
-  const parsedPdf = data.text.split('\n');
-  const shortArr = parsedPdf.slice(0, 20);
-  const song = new Song('Let Me Love You', 'Mario', 12141);
-  console.log(song);
-  // shortArr
-  //   .filter((slot) => {
-  //     console.log('slot', `"${slot}"`);
-  //     console.log('length', slot.length);
-  //     console.log('-------------');
-  //     return slot.trim() !== '';
-  //   })
-  //   .slice(5)
-  //   .map((slot) => {
-  //     console.log('slot', slot);
-  //   });
+pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError));
+pdfParser.on("pdfParser_dataReady", pdfData => {
+  parseToSonglist(pdfData);
 });
+
+pdfParser.loadPDF("./1.-P-series-Volume-59-FULL-LIST.pdf");
+
+function parseToSonglist(pdfData) {
+  console.log('pdfData', pdfData.formImage.Pages);
+}
 
 function writeToFile(parsedPdf) {
   fs.writeFile("test.csv", parsedPdf, function (err) {
